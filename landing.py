@@ -1,8 +1,21 @@
 class Matrix:
     def __init__(self):
-        self.row = 0
-        self.column = 0
-        self.core = []
+        self._row = 0
+        self._column = 0
+        self._core = []
+
+    @property
+    def core(self):
+        # return a shallow copy, prevent external manipulation
+        return self._core.copy()
+
+    @property
+    def row(self):
+        return self._row
+
+    @property
+    def column(self):
+        return self._column
 
     def init(self):
         print('Please define this matrix. End with a "."')
@@ -10,24 +23,24 @@ class Matrix:
             raw = input().split()
             if raw[0] == '.':  # the symbol that stop input
                 break
-            if self.column == 0:
-                self.column = len(raw)
-            if self.column != len(raw):
+            if self._column == 0:
+                self._column = len(raw)
+            if self._column != len(raw):
                 print('Error: number of element in a single column.\nOperation Terminated.')
                 break
-            self.core.append([int(i) for i in raw])
-            self.row += 1
+            self._core.append([int(i) for i in raw])
+            self._row += 1
 
     def __add__(self, other):
-        if Matrix.errorAdd(self.row, self.column, other.row, other.column):
+        if Matrix.errorAdd(self._row, self._column, other.row, other.column):
             return None
         output = Matrix()
-        output.row, output.column = self.row, self.column
-        for i in range(self.row):
+        output._row, output._column = self._row, self._column
+        for i in range(self._row):
             tmpRow = []
-            for j in range(self.column):
-                tmpRow.append(self.core[i][j] + other.core[i][j])
-            output.core.append(tmpRow)
+            for j in range(self._column):
+                tmpRow.append(self._core[i][j] + other.core[i][j])
+            output._core.append(tmpRow)
         return output
 
     @classmethod
