@@ -1,13 +1,14 @@
 class Matrix:
-    row = 0
-    column = 0
-    core = []
+    def __init__(self):
+        self.row = 0
+        self.column = 0
+        self.core = []
 
     def init(self):
         print('Please define this matrix. End with a "."')
         while True:
             raw = input().split()
-            if raw[0] == '.':
+            if raw[0] == '.':  # the symbol that stop input
                 break
             if self.column == 0:
                 self.column = len(raw)
@@ -21,9 +22,12 @@ class Matrix:
         if Matrix.errorAdd(self.row, self.column, other.row, other.column):
             return None
         output = Matrix()
+        output.row, output.column = self.row, self.column
         for i in range(self.row):
+            tmpRow = []
             for j in range(self.column):
-                output.core[i][j] = self.core[i][j] + other.core[i][j]
+                tmpRow.append(self.core[i][j] + other.core[i][j])
+            output.core.append(tmpRow)
         return output
 
     @classmethod
@@ -42,4 +46,4 @@ A = Matrix()
 A.init()
 B = Matrix()
 B.init()
-print((A + B).core, A.row, A.column)  # Cautious: NoneType value could be returned by (A + B)
+print((A + B).core, A.row, A.column)  # Caution: NoneType value could be returned by (A + B)
