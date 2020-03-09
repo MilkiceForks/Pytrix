@@ -16,10 +16,10 @@ class MatrixAdditionError(MatrixError):
 
 class MatrixElementAmountError(MatrixError):
     def __init__(self, column):
-        self.__column = column
+        self.__column = str(column)
 
     def __str__(self):
-        return 'The element amount of each row needs to be ' + str(self.__column)
+        return 'The element amount of each row needs to be ' + self.__column
 
 
 class MatrixInputError(MatrixError):
