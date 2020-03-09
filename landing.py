@@ -1,5 +1,5 @@
-from matrix.core import Matrix
-from matrix.error import *
+from calculation.matrix import Matrix
+from calculation.error import *
 
 A = Matrix()
 try:

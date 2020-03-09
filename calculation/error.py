@@ -9,9 +9,9 @@ class MatrixAdditionError(MatrixError):
 
     def __str__(self):
         if self.__flagA:
-            return 'The row value of two matrix are not the same.'
+            return 'The row value of two calculation are not the same.'
         if self.__flagB:
-            return 'The column value of two matrix are not the same.'
+            return 'The column value of two calculation are not the same.'
 
 
 class MatrixElementAmountError(MatrixError):

@@ -1,4 +1,4 @@
-from matrix.error import *
+from calculation.error import *
 
 
 class Matrix:
@@ -21,7 +21,7 @@ class Matrix:
         return self._column
 
     def init(self):
-        print('Please define this matrix. End with a "."')
+        print('Please define this calculation. End with a "."')
         while True:
             raw = input().split()
             if raw[0] == '.':  # the symbol that stop input
