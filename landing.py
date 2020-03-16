@@ -1,16 +1,18 @@
-from interaction.control import Control
+from interaction.control import Control, command
 
 while True:
     print('>>> ', end='')
     line = input().split()
-    if len(line) != 0:
-        if line[0] in ['end', 'quit', 'exit', 'esc', 'escape']:
+    if len(line):
+        if line[0] in command['quit']:
             Control.exit(0)
-        # TODO elif line[0] in ['dec', 'declare']:
-        # TODO elif line[0] in ['def', 'define']:
-        # TODO elif line[0] in ['var', 'variable']:
-        # TODO elif line[0] in ['del', 'delete', 'rm', 'remove']:
-        # TODO elif line[0] in ['lis', 'list', 'ls']:
+        # TODO elif line[0] in command['declare']:
+        # TODO elif line[0] in command['define']:
+        # TODO elif line[0] in command['variable']:
+        # TODO elif line[0] in command['remove']:
+        # TODO elif line[0] in command['list']:
+        else:
+            print('Operation not found.')
 
 '''
 A = Matrix()
@@ -35,4 +37,4 @@ except AttributeError as error:
     print(error)
 except MatrixAdditionError as error:
     print(error)
-    '''
+'''

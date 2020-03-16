@@ -1,4 +1,12 @@
-from calculation.matrix import Matrix
+from calculation.core import Matrix
+
+command = {'quit': ['end', 'quit', 'exit', 'esc', 'escape'],
+           'declare': ['dec', 'declare'],
+           'define': ['def', 'define'],
+           'variable': ['var', 'variable'],
+           'remove': ['del', 'delete', 'rm', 'remove'],
+           'list': ['lis', 'list', 'ls']
+           }
 
 
 class Control:
