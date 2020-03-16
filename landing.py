@@ -1,18 +1,28 @@
 from interaction.control import Control, command
 
 while True:
-    print('>>> ', end='')
-    line = input().split()
-    if len(line):
+    line = input('>>> ').split()
+    length = len(line)
+    if length == 0:
+        pass
+    elif length == 1:
         if line[0] in command['quit']:
             Control.exit(0)
-        # TODO elif line[0] in command['declare']:
-        # TODO elif line[0] in command['define']:
-        # TODO elif line[0] in command['variable']:
-        # TODO elif line[0] in command['remove']:
-        # TODO elif line[0] in command['list']:
-        else:
-            print('Operation not found.')
+            break                              # note that this line is unreachable
+        elif line[0] in command['list']:
+            Control.list()
+    elif length == 2:
+        if line[0] in command['declare']:
+            Control.declare()
+        elif line[0] in command['define']:
+            Control.define()
+        elif line[0] in command['remove']:
+            Control.remove()
+    elif length >= 3:
+        if line[0] in command['add']:
+            Control.add()
+    else:
+        print('Operation not found.')
 
 '''
 A = Matrix()
