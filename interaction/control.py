@@ -12,20 +12,19 @@ command = {'exit': ['end', 'quit', 'exit', 'esc', 'escape'],
 class Control:
     @classmethod
     def exit(cls, original, detail):
-        optionDisc = {'-f': False}
-        for option in list(optionDisc.keys()):
+        optionDict = {'-f': False}
+        for option in list(optionDict.keys()):
             if detail.count(option):
-                optionDisc[option] = True
-                for i in range(len(detail)):
-                    if detail[i] == option:
-                        del detail[i]
+                optionDict[option] = True
+                for i in range(detail.count(option)):
+                    detail.remove(option)
         if len(detail) != 0:
             print('Error: Unknown option in command "%s":' % original, end=' ')
             for i in detail:
                 print(i, end=' ')
             print('')
         else:
-            if optionDisc.get('-f'):
+            if optionDict.get('-f'):
                 exit(0)
             else:
                 response = input('Are you sure you want to quit? (y/n) ')
