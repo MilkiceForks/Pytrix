@@ -1,6 +1,6 @@
 from calculation.core import Matrix
 
-command = {'quit': ['end', 'quit', 'exit', 'esc', 'escape'],
+command = {'exit': ['end', 'quit', 'exit', 'esc', 'escape'],
            'list': ['lis', 'list', 'ls'],
            'declare': ['dec', 'declare'],
            'define': ['def', 'define'],
@@ -11,15 +11,31 @@ command = {'quit': ['end', 'quit', 'exit', 'esc', 'escape'],
 
 class Control:
     @classmethod
-    def exit(cls, num):
-        response = input('Are you sure you want to quit? (y/n) ')
-        if response in ['y', 'Y']:
-            exit(num)
-        elif response in ['n', 'N']:
-            return None
+    def exit(cls, original, detail):
+        optionDisc = {'-f': False}
+        for option in list(optionDisc.keys()):
+            if detail.count(option):
+                optionDisc[option] = True
+                for i in range(len(detail)):
+                    if detail[i] == option:
+                        del detail[i]
+        if len(detail) != 0:
+            print('Error: Unknown option in command "%s":' % original, end=' ')
+            for i in detail:
+                print(i, end=' ')
+            print('')
         else:
-            print('Invalid command!')
-            return None
+            if optionDisc.get('-f'):
+                exit(0)
+            else:
+                response = input('Are you sure you want to quit? (y/n) ')
+                if response in ['y', 'Y']:
+                    exit(0)
+                elif response in ['n', 'N']:
+                    pass
+                else:
+                    print('Unknown command: ' + response)
+        return None
 
     @classmethod
     def list(cls):

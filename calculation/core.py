@@ -46,3 +46,29 @@ class Matrix:
                 tmpRow.append(self._core[i][j] + other.core[i][j])
             output._core.append(tmpRow)
         return output
+
+
+'''
+A = Matrix()
+try:
+    A.init()
+except MatrixInputError as error:
+    print(error)
+except MatrixElementAmountError as error:
+    print(error)
+
+B = Matrix()
+try:
+    B.init()
+except MatrixInputError as error:
+    print(error)
+except MatrixElementAmountError as error:
+    print(error)
+
+try:
+    print((A + B).core, A.row, A.column)
+except AttributeError as error:
+    print(error)
+except MatrixAdditionError as error:
+    print(error)
+'''
