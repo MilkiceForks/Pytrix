@@ -1,4 +1,5 @@
 from calculation.core import Matrix
+from memory.list import matrixList
 
 commandDict = {'exit': ['end', 'quit', 'exit', 'esc', 'escape'],
                'list': ['lis', 'list', 'ls'],
@@ -38,7 +39,8 @@ class Control:
 
     @classmethod
     def list(cls):
-        pass  # TODO: Define this function
+        for i in range(len(matrixList)):
+            print(matrixList[i].name + ': ' + str(matrixList[i].core))
 
     @classmethod
     def declare(cls):

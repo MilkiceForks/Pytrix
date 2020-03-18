@@ -2,10 +2,16 @@ from calculation.error import *
 
 
 class Matrix:
-    def __init__(self, row=0, column=0):
+    def __init__(self, name, row=0, column=0):
+        self._name = name
         self._row = row
         self._column = column
         self._core = []
+
+    @property
+    def name(self):
+        # return a shallow copy, prevent external manipulation
+        return self._name
 
     @property
     def core(self):
