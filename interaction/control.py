@@ -1,26 +1,26 @@
 from calculation.core import Matrix
 
-command = {'exit': ['end', 'quit', 'exit', 'esc', 'escape'],
-           'list': ['lis', 'list', 'ls'],
-           'declare': ['dec', 'declare'],
-           'define': ['def', 'define'],
-           'remove': ['del', 'delete', 'rm', 'remove'],
-           'add': ['add']
-           }
+commandDict = {'exit': ['end', 'quit', 'exit', 'esc', 'escape'],
+               'list': ['lis', 'list', 'ls'],
+               'declare': ['dec', 'declare'],
+               'define': ['def', 'define'],
+               'remove': ['del', 'delete', 'rm', 'remove'],
+               'add': ['add']
+               }
 
 
 class Control:
     @classmethod
-    def exit(cls, original, detail):
+    def exit(cls, command, options):
         optionDict = {'-f': False}
-        for option in list(optionDict.keys()):
-            if detail.count(option):
-                optionDict[option] = True
-                for i in range(detail.count(option)):
-                    detail.remove(option)
-        if len(detail) != 0:
-            print('Error: Unknown option in command "%s":' % original, end=' ')
-            for i in detail:
+        for key in list(optionDict.keys()):
+            if options.count(key):
+                optionDict[key] = True
+                for i in range(options.count(key)):
+                    options.remove(key)
+        if len(options) != 0:
+            print('Error: Unknown option in command "%s":' % command, end=' ')
+            for i in options:
                 print(i, end=' ')
             print('')
         else:
