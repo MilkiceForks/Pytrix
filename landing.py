@@ -1,7 +1,7 @@
 from interaction.control import Control, commandDict
 from memory.list import matrixList, init
 
-init()
+init()  # init matrixList
 
 while True:
     line = input('>>> ').split()
