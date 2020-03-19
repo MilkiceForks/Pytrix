@@ -1,5 +1,6 @@
 from calculation.core import Matrix
 from memory.list import matrixList
+from time import sleep
 
 commandDict = {'exit': ['end', 'quit', 'exit', 'esc', 'escape'],
                'list': ['lis', 'list', 'ls'],
@@ -9,10 +10,27 @@ commandDict = {'exit': ['end', 'quit', 'exit', 'esc', 'escape'],
                'add': ['add']
                }
 
+commandFunc = {'exit': 'exit',
+               'list': 'list',
+               'declare': 'declare',
+               'define': 'define',
+               'remove': 'remove',
+               'add': "add"}
+
+commandArgs = {'exit': {'force': {'isSwitch': True, 'value': False},
+                        'count': {'isSwitch': False, 'value': 0}},
+               'list': {},
+               'declare': {},
+               'define': {},
+               'remove': {},
+               'add': {}}
+
+argsAlias = {'exit': {'f': 'force', 'c': 'count'}}
 
 class Control:
     @classmethod
-    def exit(cls, command, options):
+    def exit(cls, command, options, values):
+        '''
         optionDict = {'-f': False}
         for key in list(optionDict.keys()):
             if options.count(key):
@@ -36,6 +54,26 @@ class Control:
                 else:
                     print('Unknown command: ' + response)
         return None
+        '''
+        if options['force']['value']:
+            secs = 0
+            try:
+                secs = int(options['count']['value'])
+            except:
+                print("Invalid countdown seconds")
+                return None
+            if secs < 0:
+                print("Invalid countdown seconds")
+            sleep(secs)
+            exit(0)
+        else:
+            response = input('Are you sure you want to quit? (y/n) ')
+            if response in ['y', 'Y']:
+                exit(0)
+            elif response in ['n', 'N']:
+                pass
+            else:
+                print('Unknown command: ' + response)
 
     @classmethod
     def list(cls):
